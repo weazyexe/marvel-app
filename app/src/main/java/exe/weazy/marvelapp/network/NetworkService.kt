@@ -11,5 +11,5 @@ interface NetworkService {
                     @Query("ts") timestamp : Long,
                     @Query("hash") hash : String,
                     @Query("offset") offset : Int,
-                    @Query("limit") limit: Int) : Observable<HeroesResponse>
+                    @Query("limit") limit: Int) : Observable<CharactersResponse>
 }

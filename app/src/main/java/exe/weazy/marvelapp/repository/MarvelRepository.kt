@@ -61,4 +61,8 @@ class MarvelRepository {
             }
         }
     }
+
+    fun eraseAllCharactersFromCache() {
+        dao.nukeTable()
+    }
 }

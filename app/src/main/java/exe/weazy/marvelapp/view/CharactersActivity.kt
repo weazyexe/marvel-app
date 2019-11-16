@@ -8,11 +8,11 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
-import com.paginate.Paginate
 import exe.weazy.marvelapp.R
 import exe.weazy.marvelapp.adapter.CharactersAdapter
 import exe.weazy.marvelapp.adapter.CharactersDiffUtilItemCallback
 import exe.weazy.marvelapp.state.CharactersState
+import exe.weazy.marvelapp.util.DEFAULT_PAGE_SIZE
 import exe.weazy.marvelapp.viewmodel.CharactersViewModel
 import kotlinx.android.synthetic.main.activity_characters.*
 
@@ -30,9 +30,13 @@ class CharactersActivity : AppCompatActivity() {
 
         initAdapter()
         initViewModel()
+        initListeners()
     }
 
-
+    override fun onStart() {
+        super.onStart()
+        setState(CharactersState.Loading())
+    }
 
     private fun setState(state : CharactersState) {
         when (state) {
@@ -41,13 +45,9 @@ class CharactersActivity : AppCompatActivity() {
                 loadingLayout.visibility = View.GONE
                 errorLayout.visibility = View.GONE
 
-                mainSwipeLayout.isRefreshing = false
-            }
-
-            is CharactersState.Default -> {
-                heroesRecyclerView.visibility = View.GONE
-                loadingLayout.visibility = View.VISIBLE
-                errorLayout.visibility = View.GONE
+                if (state.msg != null) {
+                    showSnackbar(state.msg)
+                }
 
                 mainSwipeLayout.isRefreshing = false
             }
@@ -84,7 +84,11 @@ class CharactersActivity : AppCompatActivity() {
         // characters observer
         viewModel.characters.observe(this, Observer {
             adapter.submitList(it)
-            setState(CharactersState.Loaded(it))
+            viewModel.page = it.size / DEFAULT_PAGE_SIZE
+        })
+
+        viewModel.state.observe(this, Observer {
+            setState(it)
         })
     }
 
@@ -96,5 +100,11 @@ class CharactersActivity : AppCompatActivity() {
 
         recyclerView.adapter = adapter
         recyclerView.layoutManager = layoutManager
+    }
+
+    private fun initListeners() {
+        mainSwipeLayout.setOnRefreshListener {
+            viewModel.refresh()
+        }
     }
 }

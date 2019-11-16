@@ -1,21 +1,21 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /home/weazy/repos/marvel-app/app/src/main/AndroidManifest.xml:2:1-24:12
-INJECTED from /home/weazy/repos/marvel-app/app/src/main/AndroidManifest.xml:2:1-24:12
-INJECTED from /home/weazy/repos/marvel-app/app/src/main/AndroidManifest.xml:2:1-24:12
-INJECTED from /home/weazy/repos/marvel-app/app/src/main/AndroidManifest.xml:2:1-24:12
+ADDED from /home/weazy/repos/marvel-app/app/src/main/AndroidManifest.xml:2:1-26:12
+INJECTED from /home/weazy/repos/marvel-app/app/src/main/AndroidManifest.xml:2:1-26:12
+INJECTED from /home/weazy/repos/marvel-app/app/src/main/AndroidManifest.xml:2:1-26:12
+INJECTED from /home/weazy/repos/marvel-app/app/src/main/AndroidManifest.xml:2:1-26:12
 MERGED from [com.google.android.material:material:1.0.0] /home/weazy/.gradle/caches/transforms-2/files-2.1/b3c970aca904ae2d480d925a6ea32492/material-1.0.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.appcompat:appcompat:1.1.0] /home/weazy/.gradle/caches/transforms-2/files-2.1/31016c6c0856b517b84ecfbcfb815ff0/appcompat-1.1.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.core:core-ktx:1.1.0] /home/weazy/.gradle/caches/transforms-2/files-2.1/1a48618d6c5819b93f43ddd9a04c22dd/core-ktx-1.1.0/AndroidManifest.xml:2:1-9:12
 MERGED from [androidx.cardview:cardview:1.0.0] /home/weazy/.gradle/caches/transforms-2/files-2.1/6589ea9df5e4c5732121f087e6d0e86b/cardview-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.paging:paging-runtime:2.0.0] /home/weazy/.gradle/caches/transforms-2/files-2.1/87b3a81e46adbbf70c812e7f152a4eee/paging-runtime-2.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [com.github.markomilos:paginate:0.5.1] /home/weazy/.gradle/caches/transforms-2/files-2.1/61f28399cd6fb65a86cf69e18ac85a7e/jetified-paginate-0.5.1/AndroidManifest.xml:2:1-8:12
 MERGED from [androidx.recyclerview:recyclerview:1.0.0] /home/weazy/.gradle/caches/transforms-2/files-2.1/54df5e4de0f9228e7dec4ebcadd63b71/recyclerview-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-extensions:2.1.0] /home/weazy/.gradle/caches/transforms-2/files-2.1/153c512dcdd47997aaed5784bd444bbb/lifecycle-extensions-2.1.0/AndroidManifest.xml:17:1-25:12
 MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] /home/weazy/.gradle/caches/transforms-2/files-2.1/c4b4b829cc770abdd306eef91b3e77f9/constraintlayout-1.1.3/AndroidManifest.xml:2:1-11:12
 MERGED from [io.reactivex.rxjava2:rxandroid:2.1.1] /home/weazy/.gradle/caches/transforms-2/files-2.1/5144f6a97675f8002da69729a000d25b/rxandroid-2.1.1/AndroidManifest.xml:15:1-20:12
 MERGED from [androidx.room:room-runtime:2.0.0] /home/weazy/.gradle/caches/transforms-2/files-2.1/6414733147295ecc05bd237bf3374de0/room-runtime-2.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [com.github.bumptech.glide:glide:4.9.0] /home/weazy/.gradle/caches/transforms-2/files-2.1/0877bda7a8be976ab30ed922f94aa235/jetified-glide-4.9.0/AndroidManifest.xml:2:1-12:12
+MERGED from [com.github.bumptech.glide:glide:4.10.0] /home/weazy/.gradle/caches/transforms-2/files-2.1/6408061dd2c65c0c4a836453184aab7b/glide-4.10.0/AndroidManifest.xml:2:1-12:12
+MERGED from [de.hdodenhof:circleimageview:3.0.1] /home/weazy/.gradle/caches/transforms-2/files-2.1/d1be307987d3f5e5dbf1274e557900fa/circleimageview-3.0.1/AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.fragment:fragment:1.1.0] /home/weazy/.gradle/caches/transforms-2/files-2.1/9c96e3c7610a71f64d933abf5d989c41/fragment-1.1.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.appcompat:appcompat-resources:1.1.0] /home/weazy/.gradle/caches/transforms-2/files-2.1/3c6026bf367a81ae0b26f6a0755e7c5c/appcompat-resources-1.1.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /home/weazy/.gradle/caches/transforms-2/files-2.1/196f46af8c6b2d0c413f83432af8b852/legacy-support-core-ui-1.0.0/AndroidManifest.xml:17:1-22:12
@@ -44,26 +44,26 @@ MERGED from [androidx.savedstate:savedstate:1.0.0] /home/weazy/.gradle/caches/tr
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /home/weazy/.gradle/caches/transforms-2/files-2.1/8be5234bafda9ab14ed7f88c9dd40d77/lifecycle-viewmodel-2.1.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.sqlite:sqlite-framework:2.0.0] /home/weazy/.gradle/caches/transforms-2/files-2.1/a142a41cbb1e70c9622a30117c99aa23/sqlite-framework-2.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.sqlite:sqlite:2.0.0] /home/weazy/.gradle/caches/transforms-2/files-2.1/439ab2d9efba77b391b591c7b6aaf302/sqlite-2.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [com.github.bumptech.glide:gifdecoder:4.9.0] /home/weazy/.gradle/caches/transforms-2/files-2.1/1b7dd63deaa7a220fdb8557897d9a11b/jetified-gifdecoder-4.9.0/AndroidManifest.xml:2:1-11:12
+MERGED from [com.github.bumptech.glide:gifdecoder:4.10.0] /home/weazy/.gradle/caches/transforms-2/files-2.1/c3fc2fa8702962b1d6bdf0e7ed22dd65/gifdecoder-4.10.0/AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /home/weazy/.gradle/caches/transforms-2/files-2.1/5aa6e1ee8a4aa87ed09e4136bb1359d6/versionedparcelable-1.1.0/AndroidManifest.xml:17:1-27:12
 MERGED from [androidx.interpolator:interpolator:1.0.0] /home/weazy/.gradle/caches/transforms-2/files-2.1/e05a230acf535e3dec39f0f39ed5f0ca/interpolator-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.documentfile:documentfile:1.0.0] /home/weazy/.gradle/caches/transforms-2/files-2.1/6fec6f5bd41f9541306bc06fc2cfae1b/documentfile-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /home/weazy/.gradle/caches/transforms-2/files-2.1/36046ff8fe6f6deaa96866bb67f58a2c/localbroadcastmanager-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.print:print:1.0.0] /home/weazy/.gradle/caches/transforms-2/files-2.1/3adfdbbdc85560396be263737753f758/print-1.0.0/AndroidManifest.xml:17:1-22:12
-INJECTED from /home/weazy/repos/marvel-app/app/src/main/AndroidManifest.xml:2:1-24:12
-INJECTED from /home/weazy/repos/marvel-app/app/src/main/AndroidManifest.xml:2:1-24:12
-INJECTED from /home/weazy/repos/marvel-app/app/src/main/AndroidManifest.xml:2:1-24:12
+INJECTED from /home/weazy/repos/marvel-app/app/src/main/AndroidManifest.xml:2:1-26:12
+INJECTED from /home/weazy/repos/marvel-app/app/src/main/AndroidManifest.xml:2:1-26:12
+INJECTED from /home/weazy/repos/marvel-app/app/src/main/AndroidManifest.xml:2:1-26:12
 	package
 		ADDED from /home/weazy/repos/marvel-app/app/src/main/AndroidManifest.xml:3:5-34
 		INJECTED from /home/weazy/repos/marvel-app/app/src/main/AndroidManifest.xml
 		INJECTED from /home/weazy/repos/marvel-app/app/src/main/AndroidManifest.xml
 	android:versionName
 		INJECTED from /home/weazy/repos/marvel-app/app/src/main/AndroidManifest.xml
-		ADDED from /home/weazy/repos/marvel-app/app/src/main/AndroidManifest.xml:2:1-24:12
+		ADDED from /home/weazy/repos/marvel-app/app/src/main/AndroidManifest.xml:2:1-26:12
 		INJECTED from /home/weazy/repos/marvel-app/app/src/main/AndroidManifest.xml
 	android:versionCode
 		INJECTED from /home/weazy/repos/marvel-app/app/src/main/AndroidManifest.xml
-		ADDED from /home/weazy/repos/marvel-app/app/src/main/AndroidManifest.xml:2:1-24:12
+		ADDED from /home/weazy/repos/marvel-app/app/src/main/AndroidManifest.xml:2:1-26:12
 		INJECTED from /home/weazy/repos/marvel-app/app/src/main/AndroidManifest.xml
 	xmlns:android
 		ADDED from /home/weazy/repos/marvel-app/app/src/main/AndroidManifest.xml:2:11-69
@@ -71,54 +71,62 @@ uses-permission#android.permission.INTERNET
 ADDED from /home/weazy/repos/marvel-app/app/src/main/AndroidManifest.xml:5:5-66
 	android:name
 		ADDED from /home/weazy/repos/marvel-app/app/src/main/AndroidManifest.xml:5:22-64
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from /home/weazy/repos/marvel-app/app/src/main/AndroidManifest.xml:6:5-78
+	android:name
+		ADDED from /home/weazy/repos/marvel-app/app/src/main/AndroidManifest.xml:6:22-76
 application
-ADDED from /home/weazy/repos/marvel-app/app/src/main/AndroidManifest.xml:7:5-22:19
+ADDED from /home/weazy/repos/marvel-app/app/src/main/AndroidManifest.xml:8:5-24:19
 MERGED from [com.google.android.material:material:1.0.0] /home/weazy/.gradle/caches/transforms-2/files-2.1/b3c970aca904ae2d480d925a6ea32492/material-1.0.0/AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.0.0] /home/weazy/.gradle/caches/transforms-2/files-2.1/b3c970aca904ae2d480d925a6ea32492/material-1.0.0/AndroidManifest.xml:22:5-20
 MERGED from [androidx.lifecycle:lifecycle-extensions:2.1.0] /home/weazy/.gradle/caches/transforms-2/files-2.1/153c512dcdd47997aaed5784bd444bbb/lifecycle-extensions-2.1.0/AndroidManifest.xml:22:5-23:19
 MERGED from [androidx.lifecycle:lifecycle-extensions:2.1.0] /home/weazy/.gradle/caches/transforms-2/files-2.1/153c512dcdd47997aaed5784bd444bbb/lifecycle-extensions-2.1.0/AndroidManifest.xml:22:5-23:19
 MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] /home/weazy/.gradle/caches/transforms-2/files-2.1/c4b4b829cc770abdd306eef91b3e77f9/constraintlayout-1.1.3/AndroidManifest.xml:9:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] /home/weazy/.gradle/caches/transforms-2/files-2.1/c4b4b829cc770abdd306eef91b3e77f9/constraintlayout-1.1.3/AndroidManifest.xml:9:5-20
-MERGED from [com.github.bumptech.glide:glide:4.9.0] /home/weazy/.gradle/caches/transforms-2/files-2.1/0877bda7a8be976ab30ed922f94aa235/jetified-glide-4.9.0/AndroidManifest.xml:10:5-20
-MERGED from [com.github.bumptech.glide:glide:4.9.0] /home/weazy/.gradle/caches/transforms-2/files-2.1/0877bda7a8be976ab30ed922f94aa235/jetified-glide-4.9.0/AndroidManifest.xml:10:5-20
+MERGED from [com.github.bumptech.glide:glide:4.10.0] /home/weazy/.gradle/caches/transforms-2/files-2.1/6408061dd2c65c0c4a836453184aab7b/glide-4.10.0/AndroidManifest.xml:10:5-20
+MERGED from [com.github.bumptech.glide:glide:4.10.0] /home/weazy/.gradle/caches/transforms-2/files-2.1/6408061dd2c65c0c4a836453184aab7b/glide-4.10.0/AndroidManifest.xml:10:5-20
+MERGED from [de.hdodenhof:circleimageview:3.0.1] /home/weazy/.gradle/caches/transforms-2/files-2.1/d1be307987d3f5e5dbf1274e557900fa/circleimageview-3.0.1/AndroidManifest.xml:9:5-20
+MERGED from [de.hdodenhof:circleimageview:3.0.1] /home/weazy/.gradle/caches/transforms-2/files-2.1/d1be307987d3f5e5dbf1274e557900fa/circleimageview-3.0.1/AndroidManifest.xml:9:5-20
 MERGED from [androidx.core:core:1.1.0] /home/weazy/.gradle/caches/transforms-2/files-2.1/f71f8da7ba118f56b7a69563a8255a28/core-1.1.0/AndroidManifest.xml:24:5-89
 MERGED from [androidx.core:core:1.1.0] /home/weazy/.gradle/caches/transforms-2/files-2.1/f71f8da7ba118f56b7a69563a8255a28/core-1.1.0/AndroidManifest.xml:24:5-89
 MERGED from [androidx.lifecycle:lifecycle-process:2.1.0] /home/weazy/.gradle/caches/transforms-2/files-2.1/c1ab97c2b216f99d5a9decc9b5126dcd/lifecycle-process-2.1.0/AndroidManifest.xml:22:5-28:19
 MERGED from [androidx.lifecycle:lifecycle-process:2.1.0] /home/weazy/.gradle/caches/transforms-2/files-2.1/c1ab97c2b216f99d5a9decc9b5126dcd/lifecycle-process-2.1.0/AndroidManifest.xml:22:5-28:19
-MERGED from [com.github.bumptech.glide:gifdecoder:4.9.0] /home/weazy/.gradle/caches/transforms-2/files-2.1/1b7dd63deaa7a220fdb8557897d9a11b/jetified-gifdecoder-4.9.0/AndroidManifest.xml:9:5-20
-MERGED from [com.github.bumptech.glide:gifdecoder:4.9.0] /home/weazy/.gradle/caches/transforms-2/files-2.1/1b7dd63deaa7a220fdb8557897d9a11b/jetified-gifdecoder-4.9.0/AndroidManifest.xml:9:5-20
+MERGED from [com.github.bumptech.glide:gifdecoder:4.10.0] /home/weazy/.gradle/caches/transforms-2/files-2.1/c3fc2fa8702962b1d6bdf0e7ed22dd65/gifdecoder-4.10.0/AndroidManifest.xml:9:5-20
+MERGED from [com.github.bumptech.glide:gifdecoder:4.10.0] /home/weazy/.gradle/caches/transforms-2/files-2.1/c3fc2fa8702962b1d6bdf0e7ed22dd65/gifdecoder-4.10.0/AndroidManifest.xml:9:5-20
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /home/weazy/.gradle/caches/transforms-2/files-2.1/5aa6e1ee8a4aa87ed09e4136bb1359d6/versionedparcelable-1.1.0/AndroidManifest.xml:24:5-25:19
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /home/weazy/.gradle/caches/transforms-2/files-2.1/5aa6e1ee8a4aa87ed09e4136bb1359d6/versionedparcelable-1.1.0/AndroidManifest.xml:24:5-25:19
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.1.0] /home/weazy/.gradle/caches/transforms-2/files-2.1/f71f8da7ba118f56b7a69563a8255a28/core-1.1.0/AndroidManifest.xml:24:18-86
 	android:supportsRtl
-		ADDED from /home/weazy/repos/marvel-app/app/src/main/AndroidManifest.xml:13:9-35
+		ADDED from /home/weazy/repos/marvel-app/app/src/main/AndroidManifest.xml:15:9-35
 	android:label
-		ADDED from /home/weazy/repos/marvel-app/app/src/main/AndroidManifest.xml:11:9-41
+		ADDED from /home/weazy/repos/marvel-app/app/src/main/AndroidManifest.xml:13:9-41
 	android:roundIcon
-		ADDED from /home/weazy/repos/marvel-app/app/src/main/AndroidManifest.xml:12:9-54
+		ADDED from /home/weazy/repos/marvel-app/app/src/main/AndroidManifest.xml:14:9-54
 	android:icon
-		ADDED from /home/weazy/repos/marvel-app/app/src/main/AndroidManifest.xml:10:9-43
+		ADDED from /home/weazy/repos/marvel-app/app/src/main/AndroidManifest.xml:11:9-43
 	android:allowBackup
-		ADDED from /home/weazy/repos/marvel-app/app/src/main/AndroidManifest.xml:9:9-35
+		ADDED from /home/weazy/repos/marvel-app/app/src/main/AndroidManifest.xml:10:9-35
 	android:theme
-		ADDED from /home/weazy/repos/marvel-app/app/src/main/AndroidManifest.xml:14:9-40
+		ADDED from /home/weazy/repos/marvel-app/app/src/main/AndroidManifest.xml:16:9-40
+	android:usesCleartextTraffic
+		ADDED from /home/weazy/repos/marvel-app/app/src/main/AndroidManifest.xml:12:9-44
 	android:name
-		ADDED from /home/weazy/repos/marvel-app/app/src/main/AndroidManifest.xml:8:9-33
+		ADDED from /home/weazy/repos/marvel-app/app/src/main/AndroidManifest.xml:9:9-33
 activity#exe.weazy.marvelapp.view.CharactersActivity
-ADDED from /home/weazy/repos/marvel-app/app/src/main/AndroidManifest.xml:15:9-21:20
+ADDED from /home/weazy/repos/marvel-app/app/src/main/AndroidManifest.xml:17:9-23:20
 	android:name
-		ADDED from /home/weazy/repos/marvel-app/app/src/main/AndroidManifest.xml:15:19-58
+		ADDED from /home/weazy/repos/marvel-app/app/src/main/AndroidManifest.xml:17:19-58
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /home/weazy/repos/marvel-app/app/src/main/AndroidManifest.xml:16:13-20:29
+ADDED from /home/weazy/repos/marvel-app/app/src/main/AndroidManifest.xml:18:13-22:29
 action#android.intent.action.MAIN
-ADDED from /home/weazy/repos/marvel-app/app/src/main/AndroidManifest.xml:17:17-69
+ADDED from /home/weazy/repos/marvel-app/app/src/main/AndroidManifest.xml:19:17-69
 	android:name
-		ADDED from /home/weazy/repos/marvel-app/app/src/main/AndroidManifest.xml:17:25-66
+		ADDED from /home/weazy/repos/marvel-app/app/src/main/AndroidManifest.xml:19:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /home/weazy/repos/marvel-app/app/src/main/AndroidManifest.xml:19:17-77
+ADDED from /home/weazy/repos/marvel-app/app/src/main/AndroidManifest.xml:21:17-77
 	android:name
-		ADDED from /home/weazy/repos/marvel-app/app/src/main/AndroidManifest.xml:19:27-74
+		ADDED from /home/weazy/repos/marvel-app/app/src/main/AndroidManifest.xml:21:27-74
 uses-sdk
 INJECTED from /home/weazy/repos/marvel-app/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /home/weazy/repos/marvel-app/app/src/main/AndroidManifest.xml
@@ -133,8 +141,6 @@ MERGED from [androidx.cardview:cardview:1.0.0] /home/weazy/.gradle/caches/transf
 MERGED from [androidx.cardview:cardview:1.0.0] /home/weazy/.gradle/caches/transforms-2/files-2.1/6589ea9df5e4c5732121f087e6d0e86b/cardview-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.paging:paging-runtime:2.0.0] /home/weazy/.gradle/caches/transforms-2/files-2.1/87b3a81e46adbbf70c812e7f152a4eee/paging-runtime-2.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.paging:paging-runtime:2.0.0] /home/weazy/.gradle/caches/transforms-2/files-2.1/87b3a81e46adbbf70c812e7f152a4eee/paging-runtime-2.0.0/AndroidManifest.xml:20:5-44
-MERGED from [com.github.markomilos:paginate:0.5.1] /home/weazy/.gradle/caches/transforms-2/files-2.1/61f28399cd6fb65a86cf69e18ac85a7e/jetified-paginate-0.5.1/AndroidManifest.xml:6:5-43
-MERGED from [com.github.markomilos:paginate:0.5.1] /home/weazy/.gradle/caches/transforms-2/files-2.1/61f28399cd6fb65a86cf69e18ac85a7e/jetified-paginate-0.5.1/AndroidManifest.xml:6:5-43
 MERGED from [androidx.recyclerview:recyclerview:1.0.0] /home/weazy/.gradle/caches/transforms-2/files-2.1/54df5e4de0f9228e7dec4ebcadd63b71/recyclerview-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.recyclerview:recyclerview:1.0.0] /home/weazy/.gradle/caches/transforms-2/files-2.1/54df5e4de0f9228e7dec4ebcadd63b71/recyclerview-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-extensions:2.1.0] /home/weazy/.gradle/caches/transforms-2/files-2.1/153c512dcdd47997aaed5784bd444bbb/lifecycle-extensions-2.1.0/AndroidManifest.xml:20:5-44
@@ -145,8 +151,10 @@ MERGED from [io.reactivex.rxjava2:rxandroid:2.1.1] /home/weazy/.gradle/caches/tr
 MERGED from [io.reactivex.rxjava2:rxandroid:2.1.1] /home/weazy/.gradle/caches/transforms-2/files-2.1/5144f6a97675f8002da69729a000d25b/rxandroid-2.1.1/AndroidManifest.xml:18:5-43
 MERGED from [androidx.room:room-runtime:2.0.0] /home/weazy/.gradle/caches/transforms-2/files-2.1/6414733147295ecc05bd237bf3374de0/room-runtime-2.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.room:room-runtime:2.0.0] /home/weazy/.gradle/caches/transforms-2/files-2.1/6414733147295ecc05bd237bf3374de0/room-runtime-2.0.0/AndroidManifest.xml:20:5-44
-MERGED from [com.github.bumptech.glide:glide:4.9.0] /home/weazy/.gradle/caches/transforms-2/files-2.1/0877bda7a8be976ab30ed922f94aa235/jetified-glide-4.9.0/AndroidManifest.xml:6:5-8:41
-MERGED from [com.github.bumptech.glide:glide:4.9.0] /home/weazy/.gradle/caches/transforms-2/files-2.1/0877bda7a8be976ab30ed922f94aa235/jetified-glide-4.9.0/AndroidManifest.xml:6:5-8:41
+MERGED from [com.github.bumptech.glide:glide:4.10.0] /home/weazy/.gradle/caches/transforms-2/files-2.1/6408061dd2c65c0c4a836453184aab7b/glide-4.10.0/AndroidManifest.xml:6:5-8:41
+MERGED from [com.github.bumptech.glide:glide:4.10.0] /home/weazy/.gradle/caches/transforms-2/files-2.1/6408061dd2c65c0c4a836453184aab7b/glide-4.10.0/AndroidManifest.xml:6:5-8:41
+MERGED from [de.hdodenhof:circleimageview:3.0.1] /home/weazy/.gradle/caches/transforms-2/files-2.1/d1be307987d3f5e5dbf1274e557900fa/circleimageview-3.0.1/AndroidManifest.xml:5:5-7:41
+MERGED from [de.hdodenhof:circleimageview:3.0.1] /home/weazy/.gradle/caches/transforms-2/files-2.1/d1be307987d3f5e5dbf1274e557900fa/circleimageview-3.0.1/AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.fragment:fragment:1.1.0] /home/weazy/.gradle/caches/transforms-2/files-2.1/9c96e3c7610a71f64d933abf5d989c41/fragment-1.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.fragment:fragment:1.1.0] /home/weazy/.gradle/caches/transforms-2/files-2.1/9c96e3c7610a71f64d933abf5d989c41/fragment-1.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.appcompat:appcompat-resources:1.1.0] /home/weazy/.gradle/caches/transforms-2/files-2.1/3c6026bf367a81ae0b26f6a0755e7c5c/appcompat-resources-1.1.0/AndroidManifest.xml:20:5-22:41
@@ -203,8 +211,8 @@ MERGED from [androidx.sqlite:sqlite-framework:2.0.0] /home/weazy/.gradle/caches/
 MERGED from [androidx.sqlite:sqlite-framework:2.0.0] /home/weazy/.gradle/caches/transforms-2/files-2.1/a142a41cbb1e70c9622a30117c99aa23/sqlite-framework-2.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.sqlite:sqlite:2.0.0] /home/weazy/.gradle/caches/transforms-2/files-2.1/439ab2d9efba77b391b591c7b6aaf302/sqlite-2.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.sqlite:sqlite:2.0.0] /home/weazy/.gradle/caches/transforms-2/files-2.1/439ab2d9efba77b391b591c7b6aaf302/sqlite-2.0.0/AndroidManifest.xml:20:5-44
-MERGED from [com.github.bumptech.glide:gifdecoder:4.9.0] /home/weazy/.gradle/caches/transforms-2/files-2.1/1b7dd63deaa7a220fdb8557897d9a11b/jetified-gifdecoder-4.9.0/AndroidManifest.xml:5:5-7:41
-MERGED from [com.github.bumptech.glide:gifdecoder:4.9.0] /home/weazy/.gradle/caches/transforms-2/files-2.1/1b7dd63deaa7a220fdb8557897d9a11b/jetified-gifdecoder-4.9.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.github.bumptech.glide:gifdecoder:4.10.0] /home/weazy/.gradle/caches/transforms-2/files-2.1/c3fc2fa8702962b1d6bdf0e7ed22dd65/gifdecoder-4.10.0/AndroidManifest.xml:5:5-7:41
+MERGED from [com.github.bumptech.glide:gifdecoder:4.10.0] /home/weazy/.gradle/caches/transforms-2/files-2.1/c3fc2fa8702962b1d6bdf0e7ed22dd65/gifdecoder-4.10.0/AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /home/weazy/.gradle/caches/transforms-2/files-2.1/5aa6e1ee8a4aa87ed09e4136bb1359d6/versionedparcelable-1.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /home/weazy/.gradle/caches/transforms-2/files-2.1/5aa6e1ee8a4aa87ed09e4136bb1359d6/versionedparcelable-1.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.interpolator:interpolator:1.0.0] /home/weazy/.gradle/caches/transforms-2/files-2.1/e05a230acf535e3dec39f0f39ed5f0ca/interpolator-1.0.0/AndroidManifest.xml:20:5-44

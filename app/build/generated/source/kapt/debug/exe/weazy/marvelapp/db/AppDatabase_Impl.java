@@ -29,9 +29,9 @@ public final class AppDatabase_Impl extends AppDatabase {
     final SupportSQLiteOpenHelper.Callback _openCallback = new RoomOpenHelper(configuration, new RoomOpenHelper.Delegate(5) {
       @Override
       public void createAllTables(SupportSQLiteDatabase _db) {
-        _db.execSQL("CREATE TABLE IF NOT EXISTS `Character` (`id` INTEGER NOT NULL, `name` TEXT NOT NULL, `description` TEXT NOT NULL, PRIMARY KEY(`id`))");
+        _db.execSQL("CREATE TABLE IF NOT EXISTS `Character` (`id` INTEGER NOT NULL, `name` TEXT NOT NULL, `description` TEXT NOT NULL, `image` TEXT NOT NULL, PRIMARY KEY(`id`))");
         _db.execSQL("CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)");
-        _db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"49a32ab1df899ab388e7fb70e4f6335e\")");
+        _db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"2fe9c070f22f0e70b3d85cef8e0883e2\")");
       }
 
       @Override
@@ -61,21 +61,22 @@ public final class AppDatabase_Impl extends AppDatabase {
 
       @Override
       protected void validateMigration(SupportSQLiteDatabase _db) {
-        final HashMap<String, TableInfo.Column> _columnsCharacter = new HashMap<String, TableInfo.Column>(3);
+        final HashMap<String, TableInfo.Column> _columnsCharacter = new HashMap<String, TableInfo.Column>(4);
         _columnsCharacter.put("id", new TableInfo.Column("id", "INTEGER", true, 1));
         _columnsCharacter.put("name", new TableInfo.Column("name", "TEXT", true, 0));
         _columnsCharacter.put("description", new TableInfo.Column("description", "TEXT", true, 0));
+        _columnsCharacter.put("image", new TableInfo.Column("image", "TEXT", true, 0));
         final HashSet<TableInfo.ForeignKey> _foreignKeysCharacter = new HashSet<TableInfo.ForeignKey>(0);
         final HashSet<TableInfo.Index> _indicesCharacter = new HashSet<TableInfo.Index>(0);
         final TableInfo _infoCharacter = new TableInfo("Character", _columnsCharacter, _foreignKeysCharacter, _indicesCharacter);
         final TableInfo _existingCharacter = TableInfo.read(_db, "Character");
         if (! _infoCharacter.equals(_existingCharacter)) {
-          throw new IllegalStateException("Migration didn't properly handle Character(exe.weazy.marvelapp.entity.Character).\n"
+          throw new IllegalStateException("Migration didn't properly handle Character(exe.weazy.marvelapp.model.Character).\n"
                   + " Expected:\n" + _infoCharacter + "\n"
                   + " Found:\n" + _existingCharacter);
         }
       }
-    }, "49a32ab1df899ab388e7fb70e4f6335e", "2d7ad14d0e66314487ee70501ab5dc9e");
+    }, "2fe9c070f22f0e70b3d85cef8e0883e2", "7473908a6a51922e6fd425ad47d0c55a");
     final SupportSQLiteOpenHelper.Configuration _sqliteConfig = SupportSQLiteOpenHelper.Configuration.builder(configuration.context)
         .name(configuration.name)
         .callback(_openCallback)

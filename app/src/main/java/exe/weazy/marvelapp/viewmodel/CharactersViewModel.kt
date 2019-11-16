@@ -16,8 +16,10 @@ import io.reactivex.schedulers.Schedulers
 
 class CharactersViewModel : ViewModel() {
 
-    private var page = 0
+    var page = 0
     private val repository = MarvelRepository()
+
+    val state : MutableLiveData<CharactersState> = MutableLiveData()
 
     val characters by lazy {
         val dataSourceFactory = repository.getCacheDataSource()
@@ -31,11 +33,11 @@ class CharactersViewModel : ViewModel() {
 
         val boundaryCallback = object : PagedList.BoundaryCallback<Character>() {
             override fun onItemAtEndLoaded(itemAtEnd: Character) {
-                loadCharacters(page++)
+                loadCharacters(page)
             }
 
             override fun onZeroItemsLoaded() {
-                loadCharacters(page++)
+                loadCharacters(page)
             }
         }
 
@@ -44,22 +46,36 @@ class CharactersViewModel : ViewModel() {
             .build()
     }
 
+    init {
+        state.postValue(CharactersState.Loading())
+    }
 
+    fun refresh() {
+        state.postValue(CharactersState.Loading())
+        repository.eraseAllCharactersFromCache()
+        page = 0
+        loadCharacters(page)
+    }
 
     @SuppressLint("CheckResult")
-    fun loadCharacters(page: Int) : LiveData<CharactersState> {
-        val state = MutableLiveData<CharactersState>()
-
+    fun loadCharacters(page: Int) {
         repository.fetchCharactersFromNetwork(page * DEFAULT_PAGE_SIZE, DEFAULT_PAGE_SIZE)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe { response ->
+            .subscribe( { response ->
                 repository.writeCharactersToCache(response)
                 characters.value?.dataSource?.invalidate()
 
-                state.postValue(CharactersState.Loaded(response))
-            }
+                state.postValue(CharactersState.Loaded())
+            },
+            { t ->
+                val size = characters.value?.size ?: 0
 
-        return state
+                if (size > 0) {
+                    state.postValue(CharactersState.Loaded(t.message))
+                } else {
+                    state.postValue(CharactersState.Error(t.message))
+                }
+            })
     }
 }

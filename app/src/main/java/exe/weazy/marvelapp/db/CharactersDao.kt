@@ -25,4 +25,7 @@ interface CharactersDao {
 
     @Delete
     fun delete(character: Character)
+
+    @Query("DELETE FROM character")
+    fun nukeTable()
 }
