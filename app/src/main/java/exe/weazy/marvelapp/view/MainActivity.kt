@@ -1,8 +1,8 @@
 package exe.weazy.marvelapp.view
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import exe.weazy.marvelapp.R
 import exe.weazy.marvelapp.databinding.ActivityMainBinding
@@ -29,6 +29,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun openActivity(intent: Intent) {
+        /*val options = ActivityOptions.makeSceneTransitionAnimation(this,
+            Pair.create(cardImageView, getString(R.string.characters)))
+
+        startActivity(intent, options.toBundle())*/
         startActivity(intent)
     }
 }

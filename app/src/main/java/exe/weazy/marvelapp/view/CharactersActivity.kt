@@ -1,8 +1,9 @@
 package exe.weazy.marvelapp.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -26,8 +27,10 @@ class CharactersActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setTheme(R.style.AppTheme_TransparentStatusBar)
         setContentView(R.layout.activity_characters)
 
+        initToolbar()
         initAdapter()
         initViewModel()
         initListeners()
@@ -110,5 +113,13 @@ class CharactersActivity : AppCompatActivity() {
         mainSwipeLayout.setOnRefreshListener {
             viewModel.refresh()
         }
+    }
+
+    private fun initToolbar() {
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        toolbar.title = getString(R.string.characters)
     }
 }

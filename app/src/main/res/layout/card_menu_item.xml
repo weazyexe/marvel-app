@@ -13,6 +13,9 @@
         <variable
             name="description"
             type="java.lang.String" />
+        <variable
+            name="transitionName"
+            type="java.lang.String" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -36,7 +39,8 @@
                 android:src="@{image}"
                 android:contentDescription="@string/banner_image"
                 tools:src="@drawable/characters"
-                android:scaleType="centerCrop"/>
+                android:scaleType="centerCrop"
+                android:transitionName="@{transitionName}"/>
 
             <TextView
                 android:id="@+id/titleTextView"

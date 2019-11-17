@@ -18,42 +18,48 @@
                 layout="@layout/card_menu_item"
                 app:title="@{@string/characters}"
                 app:description="@{@string/characters_desc}"
-                app:image="@{@drawable/characters}" />
+                app:image="@{@drawable/characters}"
+                app:transitionName="@{@string/characters}"/>
 
             <include
                 android:id="@+id/comicsCardView"
                 layout="@layout/card_menu_item"
                 app:title="@{@string/comics}"
                 app:description="@{@string/comics_desc}"
-                app:image="@{@drawable/comics}"/>
+                app:image="@{@drawable/comics}"
+                app:transitionName="@{@string/comics}"/>
 
             <include
                 android:id="@+id/creatorsCardView"
                 layout="@layout/card_menu_item"
                 app:title="@{@string/creators}"
                 app:description="@{@string/creators_desc}"
-                app:image="@{@drawable/creators}"/>
+                app:image="@{@drawable/creators}"
+                app:transitionName="@{@string/creators}"/>
 
             <include
                 android:id="@+id/eventsCardView"
                 layout="@layout/card_menu_item"
                 app:title="@{@string/events}"
                 app:description="@{@string/events_desc}"
-                app:image="@{@drawable/events}"/>
+                app:image="@{@drawable/events}"
+                app:transitionName="@{@string/events}"/>
 
             <include
                 android:id="@+id/seriesCardView"
                 layout="@layout/card_menu_item"
                 app:title="@{@string/series}"
                 app:description="@{@string/series_desc}"
-                app:image="@{@drawable/series}"/>
+                app:image="@{@drawable/series}"
+                app:transitionName="@{@string/series}"/>
 
             <include
                 android:id="@+id/storiesCardView"
                 layout="@layout/card_menu_item"
                 app:title="@{@string/stories}"
                 app:description="@{@string/stories_desc}"
-                app:image="@{@drawable/stories}"/>
+                app:image="@{@drawable/stories}"
+                app:transitionName="@{@string/stories}"/>
 
         </LinearLayout>
 
