@@ -85,6 +85,10 @@ class CharactersActivity : AppCompatActivity() {
         viewModel.characters.observe(this, Observer {
             adapter.submitList(it)
             viewModel.page = it.size / DEFAULT_PAGE_SIZE
+
+            if (it.isNotEmpty()) {
+                viewModel.state.postValue(CharactersState.Loaded())
+            }
         })
 
         viewModel.state.observe(this, Observer {

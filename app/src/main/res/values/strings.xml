@@ -2,4 +2,19 @@
     <string name="app_name">Marvel App</string>
     <string name="error_icon">Error icon</string>
     <string name="loading_error">Loading was failed. Try again</string>
+    <string name="banner_image">Banner image</string>
+
+    <string name="characters">Characters</string>
+    <string name="comics">Comics</string>
+    <string name="creators">Creators</string>
+    <string name="events">Events</string>
+    <string name="series">Series</string>
+    <string name="stories">Stories</string>
+
+    <string name="characters_desc">All Marvel characters right here</string>
+    <string name="comics_desc">List of all Marvel comics</string>
+    <string name="creators_desc">Marvel creators squad</string>
+    <string name="events_desc">All comics and movies events</string>
+    <string name="series_desc">Comics series</string>
+    <string name="stories_desc">Just all stories</string>
 </resources>
