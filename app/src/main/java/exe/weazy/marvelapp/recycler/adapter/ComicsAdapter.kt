@@ -51,7 +51,7 @@ class ComicsAdapter(diffUtil: DiffUtil.ItemCallback<Comics>) : PagedListAdapter<
                 .dontAnimate()
                 .into(coverImageView)
 
-            if (comics.description.isBlank()) {
+            if (comics.description.isNullOrBlank()) {
                 descriptionTextView.visibility = View.GONE
             } else {
                 descriptionTextView.text = comics.description

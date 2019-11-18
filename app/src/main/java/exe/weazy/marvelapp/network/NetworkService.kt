@@ -6,7 +6,7 @@ import retrofit2.http.Query
 
 interface NetworkService {
 
-    @GET("comics")
+    @GET("characters")
     fun fetchCharacters(@Query("apikey") apiKey : String,
                         @Query("ts") timestamp : Long,
                         @Query("hash") hash : String,
@@ -18,5 +18,6 @@ interface NetworkService {
                     @Query("ts") timestamp : Long,
                     @Query("hash") hash : String,
                     @Query("offset") offset : Int,
-                    @Query("limit") limit: Int) : Observable<ComicsResponse>
+                    @Query("limit") limit: Int,
+                    @Query("orderBy") orderBy : String = "title") : Observable<ComicsResponse>
 }

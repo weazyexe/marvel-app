@@ -14,7 +14,8 @@
         android:layout_width="100dp"
         android:layout_height="150dp"
         android:layout_alignParentStart="true"
-        android:contentDescription="@string/comics" />
+        android:contentDescription="@string/comics"
+        tools:src="@drawable/characters"/>
 
     <LinearLayout
         android:layout_width="wrap_content"

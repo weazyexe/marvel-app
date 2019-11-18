@@ -14,7 +14,7 @@ data class Comics (
     val title : String,
 
     @SerializedName("description")
-    val description : String,
+    val description : String?,
 
     @SerializedName("thumbnail")
     val image : Thumbnail

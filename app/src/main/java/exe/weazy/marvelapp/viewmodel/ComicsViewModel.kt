@@ -63,6 +63,7 @@ class ComicsViewModel : ViewModel() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe( { response ->
                 repository.saveComics(response)
+
                 comics.value?.dataSource?.invalidate()
 
                 state.postValue(State.Loaded())

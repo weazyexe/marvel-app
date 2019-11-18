@@ -17,13 +17,13 @@ interface ComicsDao {
     fun getByLimitAndOffset(offset : Int, limit: Int) : DataSource.Factory<Int, Comics>
 
     @Insert
-    fun insert(character: Comics)
+    fun insert(comics: Comics)
 
     @Update
-    fun update(character: Comics)
+    fun update(comics: Comics)
 
     @Delete
-    fun delete(character: Comics)
+    fun delete(comics: Comics)
 
     @Query("DELETE FROM Comics")
     fun nukeTable()
