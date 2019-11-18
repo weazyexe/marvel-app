@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
-import exe.weazy.marvelapp.model.Character
+import exe.weazy.marvelapp.model.Comics
 import exe.weazy.marvelapp.repository.MarvelRepository
 import exe.weazy.marvelapp.state.State
 import exe.weazy.marvelapp.util.DEFAULT_PAGE_SIZE
@@ -13,15 +13,15 @@ import exe.weazy.marvelapp.util.DEFAULT_PREFETCH_DISTANCE
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class CharactersViewModel : ViewModel() {
+class ComicsViewModel : ViewModel() {
 
     var page = 0
     private val repository = MarvelRepository()
 
     val state : MutableLiveData<State> = MutableLiveData()
 
-    val characters by lazy {
-        val dataSourceFactory = repository.getCharactersCacheDataSource()
+    val comics by lazy {
+        val dataSourceFactory = repository.getComicsCacheDataSource()
 
         val config = PagedList.Config.Builder()
             .setPageSize(DEFAULT_PAGE_SIZE)
@@ -30,13 +30,13 @@ class CharactersViewModel : ViewModel() {
             .setEnablePlaceholders(true)
             .build()
 
-        val boundaryCallback = object : PagedList.BoundaryCallback<Character>() {
-            override fun onItemAtEndLoaded(itemAtEnd: Character) {
-                loadCharacters(page)
+        val boundaryCallback = object : PagedList.BoundaryCallback<Comics>() {
+            override fun onItemAtEndLoaded(itemAtEnd: Comics) {
+                loadComics(page)
             }
 
             override fun onZeroItemsLoaded() {
-                loadCharacters(page)
+                loadComics(page)
             }
         }
 
@@ -51,30 +51,30 @@ class CharactersViewModel : ViewModel() {
 
     fun refresh() {
         state.postValue(State.Loading())
-        repository.nukeCharacters()
+        repository.nukeComics()
         page = 0
-        loadCharacters(page)
+        loadComics(page)
     }
 
     @SuppressLint("CheckResult")
-    fun loadCharacters(page: Int) {
-        repository.fetchCharactersFromNetwork(page * DEFAULT_PAGE_SIZE, DEFAULT_PAGE_SIZE)
+    fun loadComics(page: Int) {
+        repository.fetchComicsFromNetwork(page * DEFAULT_PAGE_SIZE, DEFAULT_PAGE_SIZE)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe( { response ->
-                repository.saveCharacters(response)
-                characters.value?.dataSource?.invalidate()
+                repository.saveComics(response)
+                comics.value?.dataSource?.invalidate()
 
                 state.postValue(State.Loaded())
             },
-            { t ->
-                val size = characters.value?.size ?: 0
+                { t ->
+                    val size = comics.value?.size ?: 0
 
-                if (size > 0) {
-                    state.postValue(State.Loaded(t.message))
-                } else {
-                    state.postValue(State.Error(t.message))
-                }
-            })
+                    if (size > 0) {
+                        state.postValue(State.Loaded(t.message))
+                    } else {
+                        state.postValue(State.Error(t.message))
+                    }
+                })
     }
 }

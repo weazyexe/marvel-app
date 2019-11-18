@@ -3,6 +3,7 @@ package exe.weazy.marvelapp.repository
 import androidx.paging.DataSource
 import exe.weazy.marvelapp.db.AppDatabase
 import exe.weazy.marvelapp.db.CharactersDao
+import exe.weazy.marvelapp.db.ComicsDao
 import exe.weazy.marvelapp.network.NetworkService
 import exe.weazy.marvelapp.util.App
 import exe.weazy.marvelapp.util.toMD5
@@ -12,6 +13,7 @@ import java.util.*
 import javax.inject.Inject
 import javax.inject.Named
 import exe.weazy.marvelapp.model.Character
+import exe.weazy.marvelapp.model.Comics
 
 class MarvelRepository {
 
@@ -29,40 +31,90 @@ class MarvelRepository {
     @Inject
     lateinit var database : AppDatabase
 
-    private val dao : CharactersDao
+    private val charactersDao : CharactersDao
+    private val comicsDao : ComicsDao
 
     private var service: NetworkService
 
 
+
     init {
         App.getComponent().inject(this)
-        dao = database.charactersDao()
+
+        charactersDao = database.charactersDao()
+        comicsDao = database.comicsDao()
+
         service = retrofit.create(NetworkService::class.java)
     }
 
-    fun fetchCharactersFromNetwork(offset : Int, limit: Int) : Observable<List<Character>> {
-        val ts = Date().time
-        val hash = "${ts}${privateApiKey}${publicApiKey}".toMD5()
 
-        return service.fetchHeroes(apiKey = publicApiKey, timestamp = ts, hash = hash, offset = offset, limit = limit)
+
+    fun fetchCharactersFromNetwork(offset : Int, limit: Int) : Observable<List<Character>> {
+        val pair = getTimestampAndHash()
+        val ts = pair.first
+        val hash = pair.second
+
+        return service.fetchCharacters(apiKey = publicApiKey, timestamp = ts, hash = hash, offset = offset, limit = limit)
             .map { it.data.characters }
     }
 
-    fun getCacheDataSource() : DataSource.Factory<Int, Character> {
-        return dao.getAll()
+    fun fetchComicsFromNetwork(offset : Int, limit: Int) : Observable<List<Comics>> {
+        val pair = getTimestampAndHash()
+        val ts = pair.first
+        val hash = pair.second
+
+        return service.fetchComics(apiKey = publicApiKey, timestamp = ts, hash = hash, offset = offset, limit = limit)
+            .map { it.data.comics }
     }
 
-    fun writeCharactersToCache(characters: List<Character>) {
+
+
+    fun getCharactersCacheDataSource() : DataSource.Factory<Int, Character> {
+        return charactersDao.getAll()
+    }
+
+    fun getComicsCacheDataSource() : DataSource.Factory<Int, Comics> {
+        return comicsDao.getAll()
+    }
+
+
+
+    fun saveCharacters(characters: List<Character>) {
         characters.forEach {
-            if (dao.getById(it.id) != null) {
-                dao.update(it)
+            if (charactersDao.getById(it.id) != null) {
+                charactersDao.update(it)
             } else {
-                dao.insert(it)
+                charactersDao.insert(it)
             }
         }
     }
 
-    fun eraseAllCharactersFromCache() {
-        dao.nukeTable()
+    fun saveComics(comics: List<Comics>) {
+        comics.forEach {
+            if (comicsDao.getById(it.id) != null) {
+                comicsDao.update(it)
+            } else {
+                comicsDao.insert(it)
+            }
+        }
+    }
+
+
+
+    fun nukeCharacters() {
+        charactersDao.nukeTable()
+    }
+
+    fun nukeComics() {
+        comicsDao.nukeTable()
+    }
+
+
+
+    private fun getTimestampAndHash() : Pair<Long, String> {
+        val ts = Date().time
+        val hash = "${ts}${privateApiKey}${publicApiKey}".toMD5()
+
+        return Pair(ts, hash)
     }
 }

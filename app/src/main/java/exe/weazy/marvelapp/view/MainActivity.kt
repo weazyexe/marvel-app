@@ -26,11 +26,15 @@ class MainActivity : AppCompatActivity() {
         charactersCardView.setOnClickListener {
             openActivity(Intent(this, CharactersActivity::class.java))
         }
+
+        comicsCardView.setOnClickListener {
+            openActivity(Intent(this, ComicsActivity::class.java))
+        }
     }
 
     private fun openActivity(intent: Intent) {
         /*val options = ActivityOptions.makeSceneTransitionAnimation(this,
-            Pair.create(cardImageView, getString(R.string.characters)))
+            Pair.create(cardImageView, getString(R.string.comics)))
 
         startActivity(intent, options.toBundle())*/
         startActivity(intent)

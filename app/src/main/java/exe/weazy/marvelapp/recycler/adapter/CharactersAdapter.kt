@@ -1,4 +1,4 @@
-package exe.weazy.marvelapp.adapter
+package exe.weazy.marvelapp.recycler.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -17,7 +17,7 @@ class CharactersAdapter(diffUtilItemCallback: DiffUtil.ItemCallback<Character>)
     : PagedListAdapter<Character, CharactersAdapter.Holder>(diffUtilItemCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
-        return Holder(LayoutInflater.from(parent.context).inflate(R.layout.card_hero, parent, false))
+        return Holder(LayoutInflater.from(parent.context).inflate(R.layout.item_character, parent, false))
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
@@ -48,9 +48,8 @@ class CharactersAdapter(diffUtilItemCallback: DiffUtil.ItemCallback<Character>)
             nameTextView.text = character.name
 
             Glide.with(characterLayout.context)
-                .load(character.image.fullPath())
+                .load(character.image.fullStandardPath())
                 .placeholder(R.drawable.avatar_placeholder)
-                .error(R.drawable.ic_error_outline_gray_24dp)
                 .dontAnimate()
                 .into(characterImageView)
 
