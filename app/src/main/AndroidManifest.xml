@@ -33,6 +33,10 @@
             android:name=".view.CreatorsActivity"
             android:label="@string/creators"
             android:parentActivityName=".view.MainActivity" />
+        <activity
+            android:name=".view.EventsActivity"
+            android:label="@string/events"
+            android:parentActivityName=".view.MainActivity"/>
     </application>
 
 </manifest>

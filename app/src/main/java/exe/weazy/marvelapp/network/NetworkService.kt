@@ -28,4 +28,11 @@ interface NetworkService {
                     @Query("offset") offset : Int,
                     @Query("limit") limit: Int,
                     @Query("orderBy") orderBy : String = "firstName") : Observable<CreatorsResponse>
+
+    @GET("events")
+    fun fetchEvents(@Query("apikey") apiKey : String,
+                      @Query("ts") timestamp : Long,
+                      @Query("hash") hash : String,
+                      @Query("offset") offset : Int,
+                      @Query("limit") limit: Int) : Observable<EventsResponse>
 }

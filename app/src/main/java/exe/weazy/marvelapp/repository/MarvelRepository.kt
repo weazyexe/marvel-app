@@ -1,10 +1,7 @@
 package exe.weazy.marvelapp.repository
 
 import androidx.paging.DataSource
-import exe.weazy.marvelapp.db.AppDatabase
-import exe.weazy.marvelapp.db.CharactersDao
-import exe.weazy.marvelapp.db.ComicsDao
-import exe.weazy.marvelapp.db.CreatorsDao
+import exe.weazy.marvelapp.db.*
 import exe.weazy.marvelapp.network.NetworkService
 import exe.weazy.marvelapp.util.App
 import exe.weazy.marvelapp.util.toMD5
@@ -16,6 +13,7 @@ import javax.inject.Named
 import exe.weazy.marvelapp.model.Character
 import exe.weazy.marvelapp.model.Comics
 import exe.weazy.marvelapp.model.Creator
+import exe.weazy.marvelapp.model.Event
 
 class MarvelRepository {
 
@@ -36,6 +34,7 @@ class MarvelRepository {
     private val charactersDao : CharactersDao
     private val comicsDao : ComicsDao
     private val creatorsDao : CreatorsDao
+    private val eventsDao : EventsDao
 
     private var service: NetworkService
 
@@ -47,6 +46,7 @@ class MarvelRepository {
         charactersDao = database.charactersDao()
         comicsDao = database.comicsDao()
         creatorsDao = database.creatorsDao()
+        eventsDao = database.eventsDao()
 
         service = retrofit.create(NetworkService::class.java)
     }
@@ -80,6 +80,15 @@ class MarvelRepository {
             .map { it.data.creators }
     }
 
+    fun fetchEventsFromNetwork(offset : Int, limit: Int) : Observable<List<Event>> {
+        val pair = getTimestampAndHash()
+        val ts = pair.first
+        val hash = pair.second
+
+        return service.fetchEvents(apiKey = publicApiKey, timestamp = ts, hash = hash, offset = offset, limit = limit)
+            .map { it.data.events }
+    }
+
 
 
     fun getCharactersCacheDataSource() : DataSource.Factory<Int, Character> {
@@ -92,6 +101,10 @@ class MarvelRepository {
 
     fun getCreatorsCacheDataSource() : DataSource.Factory<Int, Creator> {
         return creatorsDao.getAll()
+    }
+
+    fun getEventsCacheDataSource() : DataSource.Factory<Int, Event> {
+        return eventsDao.getAll()
     }
 
 
@@ -126,6 +139,16 @@ class MarvelRepository {
         }
     }
 
+    fun saveEvents(events: List<Event>) {
+        events.forEach {
+            if (eventsDao.getById(it.id) != null) {
+                eventsDao.update(it)
+            } else {
+                eventsDao.insert(it)
+            }
+        }
+    }
+
 
 
 
@@ -139,6 +162,10 @@ class MarvelRepository {
 
     fun nukeCreators() {
         creatorsDao.nukeTable()
+    }
+
+    fun nukeEvents() {
+        eventsDao.nukeTable()
     }
 
 

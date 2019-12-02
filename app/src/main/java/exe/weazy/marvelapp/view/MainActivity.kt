@@ -34,6 +34,10 @@ class MainActivity : AppCompatActivity() {
         creatorsCardView.setOnClickListener {
             openActivity(Intent(this, CreatorsActivity::class.java))
         }
+
+        eventsCardView.setOnClickListener {
+            openActivity(Intent(this, EventsActivity::class.java))
+        }
     }
 
     private fun openActivity(intent: Intent) {
