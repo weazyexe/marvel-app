@@ -20,4 +20,12 @@ interface NetworkService {
                     @Query("offset") offset : Int,
                     @Query("limit") limit: Int,
                     @Query("orderBy") orderBy : String = "title") : Observable<ComicsResponse>
+
+    @GET("creators")
+    fun fetchCreators(@Query("apikey") apiKey : String,
+                    @Query("ts") timestamp : Long,
+                    @Query("hash") hash : String,
+                    @Query("offset") offset : Int,
+                    @Query("limit") limit: Int,
+                    @Query("orderBy") orderBy : String = "firstName") : Observable<CreatorsResponse>
 }

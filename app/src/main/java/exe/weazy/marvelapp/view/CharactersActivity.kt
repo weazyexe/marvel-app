@@ -84,10 +84,16 @@ class CharactersActivity : AppCompatActivity() {
     private fun initViewModel() {
         viewModel = ViewModelProviders.of(this).get(CharactersViewModel::class.java)
 
-        // comics observer
+        // creators observer
         viewModel.characters.observe(this, Observer {
             adapter.submitList(it)
-            viewModel.page = it.size / DEFAULT_PAGE_SIZE
+
+            viewModel.page = if (it.size.rem(DEFAULT_PAGE_SIZE) == 0) {
+                it.size / DEFAULT_PAGE_SIZE
+            }
+            else {
+                (it.size / DEFAULT_PAGE_SIZE) + 1
+            }
 
             if (it.isNotEmpty()) {
                 viewModel.state.postValue(State.Loaded())

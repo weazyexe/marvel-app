@@ -21,16 +21,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".view.CharactersActivity"
             android:label="@string/characters"
-            android:parentActivityName=".view.MainActivity"></activity>
-
+            android:parentActivityName=".view.MainActivity" />
         <activity
             android:name=".view.ComicsActivity"
             android:label="@string/comics"
-            android:parentActivityName=".view.MainActivity"></activity>
+            android:parentActivityName=".view.MainActivity" />
+        <activity
+            android:name=".view.CreatorsActivity"
+            android:label="@string/creators"
+            android:parentActivityName=".view.MainActivity" />
     </application>
 
 </manifest>

@@ -1,8 +1,8 @@
 package exe.weazy.marvelapp.view
 
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -10,29 +10,33 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import exe.weazy.marvelapp.R
-import exe.weazy.marvelapp.recycler.adapter.ComicsAdapter
-import exe.weazy.marvelapp.recycler.diff.ComicsDiffUtilItemCallback
+import exe.weazy.marvelapp.recycler.adapter.CharactersAdapter
+import exe.weazy.marvelapp.recycler.adapter.CreatorsAdapter
+import exe.weazy.marvelapp.recycler.diff.CharactersDiffUtilItemCallback
+import exe.weazy.marvelapp.recycler.diff.CreatorsDiffUtilIemCallback
 import exe.weazy.marvelapp.state.State
 import exe.weazy.marvelapp.util.DEFAULT_PAGE_SIZE
-import exe.weazy.marvelapp.viewmodel.ComicsViewModel
+import exe.weazy.marvelapp.viewmodel.CharactersViewModel
+import exe.weazy.marvelapp.viewmodel.CreatorsViewModel
+import kotlinx.android.synthetic.main.activity_characters.*
 import kotlinx.android.synthetic.main.activity_characters.errorLayout
 import kotlinx.android.synthetic.main.activity_characters.loadingLayout
 import kotlinx.android.synthetic.main.activity_characters.mainLayout
 import kotlinx.android.synthetic.main.activity_characters.mainSwipeLayout
-import kotlinx.android.synthetic.main.activity_comics.*
+import kotlinx.android.synthetic.main.activity_creators.*
 
-class ComicsActivity : AppCompatActivity() {
+class CreatorsActivity : AppCompatActivity() {
 
-    private lateinit var viewModel: ComicsViewModel
+    private lateinit var viewModel: CreatorsViewModel
 
-    private lateinit var adapter : ComicsAdapter
+    private lateinit var adapter : CreatorsAdapter
     private lateinit var layoutManager : LinearLayoutManager
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setTheme(R.style.AppTheme_TransparentStatusBar)
-        setContentView(R.layout.activity_comics)
+        setContentView(R.layout.activity_creators)
 
         initToolbar()
         initAdapter()
@@ -48,7 +52,7 @@ class ComicsActivity : AppCompatActivity() {
     private fun setState(state : State) {
         when (state) {
             is State.Loaded -> {
-                comicsRecyclerView.visibility = View.VISIBLE
+                creatorsRecyclerView.visibility = View.VISIBLE
                 loadingLayout.visibility = View.GONE
                 errorLayout.visibility = View.GONE
 
@@ -60,7 +64,7 @@ class ComicsActivity : AppCompatActivity() {
             }
 
             is State.Loading -> {
-                comicsRecyclerView.visibility = View.GONE
+                creatorsRecyclerView.visibility = View.GONE
                 loadingLayout.visibility = View.VISIBLE
                 errorLayout.visibility = View.GONE
 
@@ -68,7 +72,7 @@ class ComicsActivity : AppCompatActivity() {
             }
 
             is State.Error -> {
-                comicsRecyclerView.visibility = View.GONE
+                creatorsRecyclerView.visibility = View.GONE
                 loadingLayout.visibility = View.GONE
                 errorLayout.visibility = View.VISIBLE
 
@@ -86,10 +90,10 @@ class ComicsActivity : AppCompatActivity() {
     }
 
     private fun initViewModel() {
-        viewModel = ViewModelProviders.of(this).get(ComicsViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(CreatorsViewModel::class.java)
 
         // creators observer
-        viewModel.comics.observe(this, Observer {
+        viewModel.creators.observe(this, Observer {
             adapter.submitList(it)
 
             viewModel.page = if (it.size.rem(DEFAULT_PAGE_SIZE) == 0) {
@@ -111,10 +115,10 @@ class ComicsActivity : AppCompatActivity() {
 
     private fun initAdapter() {
         adapter =
-            ComicsAdapter(ComicsDiffUtilItemCallback())
+            CreatorsAdapter(CreatorsDiffUtilIemCallback())
         layoutManager = LinearLayoutManager(this)
 
-        val recyclerView = findViewById<RecyclerView>(R.id.comicsRecyclerView)
+        val recyclerView = findViewById<RecyclerView>(R.id.creatorsRecyclerView)
 
         recyclerView.adapter = adapter
         recyclerView.layoutManager = layoutManager
@@ -131,6 +135,5 @@ class ComicsActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        toolbar.title = getString(R.string.comics)
     }
 }

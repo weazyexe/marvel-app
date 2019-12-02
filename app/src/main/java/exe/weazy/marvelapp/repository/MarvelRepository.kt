@@ -4,6 +4,7 @@ import androidx.paging.DataSource
 import exe.weazy.marvelapp.db.AppDatabase
 import exe.weazy.marvelapp.db.CharactersDao
 import exe.weazy.marvelapp.db.ComicsDao
+import exe.weazy.marvelapp.db.CreatorsDao
 import exe.weazy.marvelapp.network.NetworkService
 import exe.weazy.marvelapp.util.App
 import exe.weazy.marvelapp.util.toMD5
@@ -14,6 +15,7 @@ import javax.inject.Inject
 import javax.inject.Named
 import exe.weazy.marvelapp.model.Character
 import exe.weazy.marvelapp.model.Comics
+import exe.weazy.marvelapp.model.Creator
 
 class MarvelRepository {
 
@@ -33,6 +35,7 @@ class MarvelRepository {
 
     private val charactersDao : CharactersDao
     private val comicsDao : ComicsDao
+    private val creatorsDao : CreatorsDao
 
     private var service: NetworkService
 
@@ -43,6 +46,7 @@ class MarvelRepository {
 
         charactersDao = database.charactersDao()
         comicsDao = database.comicsDao()
+        creatorsDao = database.creatorsDao()
 
         service = retrofit.create(NetworkService::class.java)
     }
@@ -67,6 +71,15 @@ class MarvelRepository {
             .map { it.data.comics }
     }
 
+    fun fetchCreatorsFromNetwork(offset : Int, limit: Int) : Observable<List<Creator>> {
+        val pair = getTimestampAndHash()
+        val ts = pair.first
+        val hash = pair.second
+
+        return service.fetchCreators(apiKey = publicApiKey, timestamp = ts, hash = hash, offset = offset, limit = limit)
+            .map { it.data.creators }
+    }
+
 
 
     fun getCharactersCacheDataSource() : DataSource.Factory<Int, Character> {
@@ -75,6 +88,10 @@ class MarvelRepository {
 
     fun getComicsCacheDataSource() : DataSource.Factory<Int, Comics> {
         return comicsDao.getAll()
+    }
+
+    fun getCreatorsCacheDataSource() : DataSource.Factory<Int, Creator> {
+        return creatorsDao.getAll()
     }
 
 
@@ -99,6 +116,17 @@ class MarvelRepository {
         }
     }
 
+    fun saveCreators(creators: List<Creator>) {
+        creators.forEach {
+            if (creatorsDao.getById(it.id) != null) {
+                creatorsDao.update(it)
+            } else {
+                creatorsDao.insert(it)
+            }
+        }
+    }
+
+
 
 
     fun nukeCharacters() {
@@ -107,6 +135,10 @@ class MarvelRepository {
 
     fun nukeComics() {
         comicsDao.nukeTable()
+    }
+
+    fun nukeCreators() {
+        creatorsDao.nukeTable()
     }
 
 
