@@ -51,7 +51,7 @@ class CreatorsViewModel : ViewModel() {
 
     fun refresh() {
         state.postValue(State.Loading())
-        repository.nukeComics()
+        repository.nukeCreators()
         page = 0
         loadCreators(page)
     }

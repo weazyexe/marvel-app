@@ -64,9 +64,6 @@ class ComicsViewModel : ViewModel() {
             .subscribe( { response ->
                 repository.saveComics(response)
 
-                val data = comics.value?.toMutableList()
-                val newData = data?.addAll(response)
-
                 comics.value?.dataSource?.invalidate()
 
                 state.postValue(State.Loaded())
