@@ -2,6 +2,7 @@ package exe.weazy.marvelapp.repository
 
 import androidx.paging.DataSource
 import exe.weazy.marvelapp.db.*
+import exe.weazy.marvelapp.model.*
 import exe.weazy.marvelapp.network.NetworkService
 import exe.weazy.marvelapp.util.App
 import exe.weazy.marvelapp.util.toMD5
@@ -10,10 +11,6 @@ import retrofit2.Retrofit
 import java.util.*
 import javax.inject.Inject
 import javax.inject.Named
-import exe.weazy.marvelapp.model.Character
-import exe.weazy.marvelapp.model.Comics
-import exe.weazy.marvelapp.model.Creator
-import exe.weazy.marvelapp.model.Event
 
 class MarvelRepository {
 
@@ -35,6 +32,8 @@ class MarvelRepository {
     private val comicsDao : ComicsDao
     private val creatorsDao : CreatorsDao
     private val eventsDao : EventsDao
+    private val seriesDao : SeriesDao
+    private val storiesDao : StoriesDao
 
     private var service: NetworkService
 
@@ -47,6 +46,8 @@ class MarvelRepository {
         comicsDao = database.comicsDao()
         creatorsDao = database.creatorsDao()
         eventsDao = database.eventsDao()
+        seriesDao = database.seriesDao()
+        storiesDao = database.storiesDao()
 
         service = retrofit.create(NetworkService::class.java)
     }
@@ -89,6 +90,24 @@ class MarvelRepository {
             .map { it.data.events }
     }
 
+    fun fetchSeriesFromNetwork(offset : Int, limit: Int) : Observable<List<Series>> {
+        val pair = getTimestampAndHash()
+        val ts = pair.first
+        val hash = pair.second
+
+        return service.fetchSeries(apiKey = publicApiKey, timestamp = ts, hash = hash, offset = offset, limit = limit)
+            .map { it.data.series }
+    }
+
+    fun fetchStoriesFromNetwork(offset : Int, limit: Int) : Observable<List<Story>> {
+        val pair = getTimestampAndHash()
+        val ts = pair.first
+        val hash = pair.second
+
+        return service.fetchStories(apiKey = publicApiKey, timestamp = ts, hash = hash, offset = offset, limit = limit)
+            .map { it.data.stories }
+    }
+
 
 
     fun getCharactersCacheDataSource() : DataSource.Factory<Int, Character> {
@@ -105,6 +124,14 @@ class MarvelRepository {
 
     fun getEventsCacheDataSource() : DataSource.Factory<Int, Event> {
         return eventsDao.getAll()
+    }
+
+    fun getSeriesCacheDataSource() : DataSource.Factory<Int, Series> {
+        return seriesDao.getAll()
+    }
+
+    fun getStoriesCacheDataSource() : DataSource.Factory<Int, Story> {
+        return storiesDao.getAll()
     }
 
 
@@ -149,6 +176,26 @@ class MarvelRepository {
         }
     }
 
+    fun saveSeries(series: List<Series>) {
+        series.forEach {
+            if (seriesDao.getById(it.id) != null) {
+                seriesDao.update(it)
+            } else {
+                seriesDao.insert(it)
+            }
+        }
+    }
+
+    fun saveStories(stories: List<Story>) {
+        stories.forEach {
+            if (storiesDao.getById(it.id) != null) {
+                storiesDao.update(it)
+            } else {
+                storiesDao.insert(it)
+            }
+        }
+    }
+
 
 
 
@@ -166,6 +213,14 @@ class MarvelRepository {
 
     fun nukeEvents() {
         eventsDao.nukeTable()
+    }
+
+    fun nukeSeries() {
+        seriesDao.nukeTable()
+    }
+
+    fun nukeStories() {
+        storiesDao.nukeTable()
     }
 
 

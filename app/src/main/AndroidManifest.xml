@@ -36,6 +36,14 @@
         <activity
             android:name=".view.EventsActivity"
             android:label="@string/events"
+            android:parentActivityName=".view.MainActivity" />
+        <activity
+            android:name=".view.SeriesActivity"
+            android:label="@string/series"
+            android:parentActivityName=".view.MainActivity"/>
+        <activity
+            android:name=".view.StoriesActivity"
+            android:label="@string/stories"
             android:parentActivityName=".view.MainActivity"/>
     </application>
 

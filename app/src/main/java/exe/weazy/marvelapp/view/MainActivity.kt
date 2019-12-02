@@ -38,6 +38,14 @@ class MainActivity : AppCompatActivity() {
         eventsCardView.setOnClickListener {
             openActivity(Intent(this, EventsActivity::class.java))
         }
+
+        seriesCardView.setOnClickListener {
+            openActivity(Intent(this, SeriesActivity::class.java))
+        }
+
+        storiesCardView.setOnClickListener {
+            openActivity(Intent(this, StoriesActivity::class.java))
+        }
     }
 
     private fun openActivity(intent: Intent) {

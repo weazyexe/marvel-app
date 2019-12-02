@@ -35,4 +35,18 @@ interface NetworkService {
                       @Query("hash") hash : String,
                       @Query("offset") offset : Int,
                       @Query("limit") limit: Int) : Observable<EventsResponse>
+
+    @GET("series")
+    fun fetchSeries(@Query("apikey") apiKey : String,
+                    @Query("ts") timestamp : Long,
+                    @Query("hash") hash : String,
+                    @Query("offset") offset : Int,
+                    @Query("limit") limit: Int) : Observable<SeriesResponse>
+
+    @GET("stories")
+    fun fetchStories(@Query("apikey") apiKey : String,
+                    @Query("ts") timestamp : Long,
+                    @Query("hash") hash : String,
+                    @Query("offset") offset : Int,
+                    @Query("limit") limit: Int) : Observable<StoriesResponse>
 }
