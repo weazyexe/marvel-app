@@ -3,7 +3,6 @@ package exe.weazy.marvelapp.recycler.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
@@ -26,15 +25,9 @@ class StoriesAdapter(diffUtil : DiffUtil.ItemCallback<Story>) : PagedListAdapter
 
     inner class Holder(view : View) : RecyclerView.ViewHolder(view) {
 
-        private var titleTextView : TextView
-        private var descriptionTextView : TextView
+        private var titleTextView = view.findViewById<TextView>(R.id.titleTextView)
+        private var descriptionTextView = view.findViewById<TextView>(R.id.descriptionTextView)
 
-        init {
-            super.itemView
-
-            titleTextView = view.findViewById(R.id.titleTextView)
-            descriptionTextView = view.findViewById(R.id.descriptionTextView)
-        }
 
         fun bind(story: Story) {
             titleTextView.text = story.title

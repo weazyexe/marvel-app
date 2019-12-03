@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
@@ -28,19 +27,12 @@ class ComicsAdapter(diffUtil: DiffUtil.ItemCallback<Comics>) : PagedListAdapter<
 
     inner class Holder(view : View) : RecyclerView.ViewHolder(view) {
 
-        private var titleTextView : TextView
-        private var descriptionTextView : TextView
-        private var coverImageView : ImageView
-        private var comicsLayout : RelativeLayout
+        private var titleTextView = view.findViewById<TextView>(R.id.titleTextView)
+        private var descriptionTextView = view.findViewById<TextView>(R.id.descriptionTextView)
+        private var coverImageView = view.findViewById<ImageView>(R.id.coverImageView)
+        private var comicsLayout = view.findViewById<View>(R.id.comicsLayout)
 
-        init {
-            super.itemView
 
-            titleTextView = view.findViewById(R.id.titleTextView)
-            descriptionTextView = view.findViewById(R.id.descriptionTextView)
-            coverImageView = view.findViewById(R.id.coverImageView)
-            comicsLayout = view.findViewById(R.id.comicsLayout)
-        }
 
         fun bind(comics: Comics) {
             titleTextView.text = comics.title

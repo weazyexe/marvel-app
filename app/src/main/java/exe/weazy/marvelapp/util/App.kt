@@ -1,10 +1,7 @@
 package exe.weazy.marvelapp.util
 
 import android.app.Application
-import exe.weazy.marvelapp.di.AppComponent
-import exe.weazy.marvelapp.di.DaggerAppComponent
-import exe.weazy.marvelapp.di.DatabaseModule
-import exe.weazy.marvelapp.di.NetworkModule
+import exe.weazy.marvelapp.di.*
 
 
 class App : Application() {

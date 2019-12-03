@@ -6,11 +6,9 @@ import com.google.gson.annotations.SerializedName
 
 @Entity
 data class Creator(
-    @SerializedName("id")
     @PrimaryKey
     val id : Int,
 
-    @SerializedName("fullName")
     val fullName : String,
 
     @SerializedName("thumbnail")

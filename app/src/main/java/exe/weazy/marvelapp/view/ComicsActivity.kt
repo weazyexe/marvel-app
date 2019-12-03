@@ -15,11 +15,10 @@ import exe.weazy.marvelapp.recycler.diff.ComicsDiffUtilItemCallback
 import exe.weazy.marvelapp.state.State
 import exe.weazy.marvelapp.util.DEFAULT_PAGE_SIZE
 import exe.weazy.marvelapp.viewmodel.ComicsViewModel
-import kotlinx.android.synthetic.main.activity_characters.errorLayout
-import kotlinx.android.synthetic.main.activity_characters.loadingLayout
-import kotlinx.android.synthetic.main.activity_characters.mainLayout
-import kotlinx.android.synthetic.main.activity_characters.mainSwipeLayout
 import kotlinx.android.synthetic.main.activity_comics.*
+import androidx.recyclerview.widget.DividerItemDecoration
+
+
 
 class ComicsActivity : AppCompatActivity() {
 
@@ -31,7 +30,6 @@ class ComicsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setTheme(R.style.AppTheme_TransparentStatusBar)
         setContentView(R.layout.activity_comics)
 
         initToolbar()
@@ -42,7 +40,13 @@ class ComicsActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        setState(State.Loading())
+
+        val list = viewModel.comics.value
+        if (list.isNullOrEmpty()) {
+            viewModel.state.postValue(State.Loading())
+        } else {
+            viewModel.state.postValue(State.Loaded())
+        }
     }
 
     private fun setState(state : State) {
@@ -56,7 +60,7 @@ class ComicsActivity : AppCompatActivity() {
                     showSnackbar(state.msg)
                 }
 
-                mainSwipeLayout.isRefreshing = false
+                mainSwipeLayout.isEnabled = true
             }
 
             is State.Loading -> {
@@ -76,7 +80,7 @@ class ComicsActivity : AppCompatActivity() {
                     showSnackbar(state.msg)
                 }
 
-                mainSwipeLayout.isRefreshing = false
+                mainSwipeLayout.isEnabled = true
             }
         }
     }
@@ -88,7 +92,6 @@ class ComicsActivity : AppCompatActivity() {
     private fun initViewModel() {
         viewModel = ViewModelProviders.of(this).get(ComicsViewModel::class.java)
 
-        // creators observer
         viewModel.comics.observe(this, Observer {
             adapter.submitList(it)
 
@@ -118,11 +121,19 @@ class ComicsActivity : AppCompatActivity() {
 
         recyclerView.adapter = adapter
         recyclerView.layoutManager = layoutManager
+
+        recyclerView.addItemDecoration(
+            DividerItemDecoration(
+                recyclerView.context,
+                DividerItemDecoration.VERTICAL
+            )
+        )
     }
 
     private fun initListeners() {
         mainSwipeLayout.setOnRefreshListener {
             viewModel.refresh()
+            mainSwipeLayout.isEnabled = false
         }
     }
 
@@ -131,6 +142,8 @@ class ComicsActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        toolbar.title = getString(R.string.comics)
+        toolbar.setNavigationOnClickListener {
+            onBackPressed()
+        }
     }
 }

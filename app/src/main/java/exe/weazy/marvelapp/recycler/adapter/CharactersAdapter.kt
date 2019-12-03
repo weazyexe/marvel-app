@@ -3,13 +3,13 @@ package exe.weazy.marvelapp.recycler.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import exe.weazy.marvelapp.R
 import exe.weazy.marvelapp.model.Character
 
@@ -30,19 +30,10 @@ class CharactersAdapter(diffUtilItemCallback: DiffUtil.ItemCallback<Character>)
 
     inner class Holder(view : View) : RecyclerView.ViewHolder(view) {
 
-        private var nameTextView : TextView
-        private var descriptionTextView : TextView
-        private var characterImageView : ImageView
-        private var characterLayout : FrameLayout
-
-        init {
-            super.itemView
-
-            nameTextView = view.findViewById(R.id.nameTextView)
-            descriptionTextView = view.findViewById(R.id.descriptionTextView)
-            characterImageView = view.findViewById(R.id.characterImageView)
-            characterLayout = view.findViewById(R.id.characterLayout)
-        }
+        private var nameTextView = view.findViewById<TextView>(R.id.nameTextView)
+        private var descriptionTextView = view.findViewById<TextView>(R.id.descriptionTextView)
+        private var characterImageView = view.findViewById<ImageView>(R.id.characterImageView)
+        private var characterLayout = view.findViewById<View>(R.id.characterLayout)
 
         fun bind(character: Character) {
             nameTextView.text = character.name
@@ -51,6 +42,7 @@ class CharactersAdapter(diffUtilItemCallback: DiffUtil.ItemCallback<Character>)
                 .load(character.image.fullStandardPath())
                 .placeholder(R.drawable.avatar_placeholder)
                 .dontAnimate()
+                .apply(RequestOptions.circleCropTransform())
                 .into(characterImageView)
 
             if (character.description.isBlank()) {

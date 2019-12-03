@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
@@ -27,7 +28,6 @@ class CharactersActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setTheme(R.style.AppTheme_TransparentStatusBar)
         setContentView(R.layout.activity_characters)
 
         initToolbar()
@@ -38,7 +38,13 @@ class CharactersActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        setState(State.Loading())
+
+        val list = viewModel.characters.value
+        if (list.isNullOrEmpty()) {
+            viewModel.state.postValue(State.Loading())
+        } else {
+            viewModel.state.postValue(State.Loaded())
+        }
     }
 
     private fun setState(state : State) {
@@ -52,7 +58,7 @@ class CharactersActivity : AppCompatActivity() {
                     showSnackbar(state.msg)
                 }
 
-                mainSwipeLayout.isRefreshing = false
+                mainSwipeLayout.isEnabled = true
             }
 
             is State.Loading -> {
@@ -72,7 +78,7 @@ class CharactersActivity : AppCompatActivity() {
                     showSnackbar(state.msg)
                 }
 
-                mainSwipeLayout.isRefreshing = false
+                mainSwipeLayout.isEnabled = true
             }
         }
     }
@@ -84,7 +90,6 @@ class CharactersActivity : AppCompatActivity() {
     private fun initViewModel() {
         viewModel = ViewModelProviders.of(this).get(CharactersViewModel::class.java)
 
-        // creators observer
         viewModel.characters.observe(this, Observer {
             adapter.submitList(it)
 
@@ -114,11 +119,19 @@ class CharactersActivity : AppCompatActivity() {
 
         recyclerView.adapter = adapter
         recyclerView.layoutManager = layoutManager
+
+        recyclerView.addItemDecoration(
+            DividerItemDecoration(
+                recyclerView.context,
+                DividerItemDecoration.VERTICAL
+            )
+        )
     }
 
     private fun initListeners() {
         mainSwipeLayout.setOnRefreshListener {
             viewModel.refresh()
+            mainSwipeLayout.isEnabled = false
         }
     }
 
@@ -127,6 +140,8 @@ class CharactersActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        toolbar.title = getString(R.string.characters)
+        toolbar.setNavigationOnClickListener {
+            onBackPressed()
+        }
     }
 }

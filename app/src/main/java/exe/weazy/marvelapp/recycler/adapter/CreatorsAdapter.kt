@@ -9,6 +9,7 @@ import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import exe.weazy.marvelapp.R
 import exe.weazy.marvelapp.model.Creator
 
@@ -27,15 +28,9 @@ class CreatorsAdapter(diffUtil : DiffUtil.ItemCallback<Creator>) : PagedListAdap
 
     inner class Holder(view : View) : RecyclerView.ViewHolder(view) {
 
-        private var nameTextView : TextView
-        private var photoImageView : ImageView
+        private var nameTextView = view.findViewById<TextView>(R.id.nameTextView)
+        private var photoImageView = view.findViewById<ImageView>(R.id.photoImageView)
 
-        init {
-            super.itemView
-
-            nameTextView = view.findViewById(R.id.nameTextView)
-            photoImageView = view.findViewById(R.id.photoImageView)
-        }
 
         fun bind(creator: Creator) {
             nameTextView.text = creator.fullName
@@ -44,6 +39,7 @@ class CreatorsAdapter(diffUtil : DiffUtil.ItemCallback<Creator>) : PagedListAdap
                 .load(creator.image.fullStandardPath())
                 .placeholder(R.drawable.avatar_placeholder)
                 .dontAnimate()
+                .apply(RequestOptions.circleCropTransform())
                 .into(photoImageView)
         }
     }

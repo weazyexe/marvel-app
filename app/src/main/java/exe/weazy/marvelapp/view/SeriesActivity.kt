@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
@@ -27,7 +28,6 @@ class SeriesActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setTheme(R.style.AppTheme_TransparentStatusBar)
         setContentView(R.layout.activity_series)
 
         initToolbar()
@@ -38,7 +38,13 @@ class SeriesActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        setState(State.Loading())
+
+        val list = viewModel.series.value
+        if (list.isNullOrEmpty()) {
+            viewModel.state.postValue(State.Loading())
+        } else {
+            viewModel.state.postValue(State.Loaded())
+        }
     }
 
     private fun setState(state : State) {
@@ -52,7 +58,7 @@ class SeriesActivity : AppCompatActivity() {
                     showSnackbar(state.msg)
                 }
 
-                mainSwipeLayout.isRefreshing = false
+                mainSwipeLayout.isEnabled = true
             }
 
             is State.Loading -> {
@@ -72,7 +78,7 @@ class SeriesActivity : AppCompatActivity() {
                     showSnackbar(state.msg)
                 }
 
-                mainSwipeLayout.isRefreshing = false
+                mainSwipeLayout.isEnabled = true
             }
         }
     }
@@ -113,11 +119,19 @@ class SeriesActivity : AppCompatActivity() {
 
         recyclerView.adapter = adapter
         recyclerView.layoutManager = layoutManager
+
+        recyclerView.addItemDecoration(
+            DividerItemDecoration(
+                recyclerView.context,
+                DividerItemDecoration.VERTICAL
+            )
+        )
     }
 
     private fun initListeners() {
         mainSwipeLayout.setOnRefreshListener {
             viewModel.refresh()
+            mainSwipeLayout.isEnabled = false
         }
     }
 
@@ -126,5 +140,8 @@ class SeriesActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        toolbar.setNavigationOnClickListener {
+            onBackPressed()
+        }
     }
 }

@@ -24,27 +24,27 @@
         <activity
             android:name=".view.CharactersActivity"
             android:label="@string/characters"
-            android:parentActivityName=".view.MainActivity" />
+            android:theme="@style/AppTheme.TransparentStatusBar"/>
         <activity
             android:name=".view.ComicsActivity"
             android:label="@string/comics"
-            android:parentActivityName=".view.MainActivity" />
+            android:theme="@style/AppTheme.TransparentStatusBar"/>
         <activity
             android:name=".view.CreatorsActivity"
             android:label="@string/creators"
-            android:parentActivityName=".view.MainActivity" />
+            android:theme="@style/AppTheme.TransparentStatusBar"/>
         <activity
             android:name=".view.EventsActivity"
             android:label="@string/events"
-            android:parentActivityName=".view.MainActivity" />
+            android:theme="@style/AppTheme.TransparentStatusBar"/>
         <activity
             android:name=".view.SeriesActivity"
             android:label="@string/series"
-            android:parentActivityName=".view.MainActivity"/>
+            android:theme="@style/AppTheme.TransparentStatusBar"/>
         <activity
             android:name=".view.StoriesActivity"
             android:label="@string/stories"
-            android:parentActivityName=".view.MainActivity"/>
+            android:theme="@style/AppTheme.TransparentStatusBar"/>
     </application>
 
 </manifest>

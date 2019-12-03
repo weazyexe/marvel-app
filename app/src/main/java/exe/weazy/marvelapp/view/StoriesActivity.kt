@@ -1,22 +1,20 @@
 package exe.weazy.marvelapp.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import exe.weazy.marvelapp.R
-import exe.weazy.marvelapp.recycler.adapter.SeriesAdapter
 import exe.weazy.marvelapp.recycler.adapter.StoriesAdapter
-import exe.weazy.marvelapp.recycler.diff.SeriesDiffUtilItemCallback
 import exe.weazy.marvelapp.recycler.diff.StoriesDiffUtilItemCallback
 import exe.weazy.marvelapp.state.State
 import exe.weazy.marvelapp.util.DEFAULT_PAGE_SIZE
-import exe.weazy.marvelapp.viewmodel.SeriesViewModel
 import exe.weazy.marvelapp.viewmodel.StoriesViewModel
 import kotlinx.android.synthetic.main.activity_stories.*
 
@@ -30,7 +28,6 @@ class StoriesActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setTheme(R.style.AppTheme_TransparentStatusBar)
         setContentView(R.layout.activity_stories)
 
         initToolbar()
@@ -41,7 +38,13 @@ class StoriesActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        setState(State.Loading())
+
+        val list = viewModel.stories.value
+        if (list.isNullOrEmpty()) {
+            viewModel.state.postValue(State.Loading())
+        } else {
+            viewModel.state.postValue(State.Loaded())
+        }
     }
 
     private fun setState(state : State) {
@@ -55,7 +58,7 @@ class StoriesActivity : AppCompatActivity() {
                     showSnackbar(state.msg)
                 }
 
-                mainSwipeLayout.isRefreshing = false
+                mainSwipeLayout.isEnabled = true
             }
 
             is State.Loading -> {
@@ -75,7 +78,7 @@ class StoriesActivity : AppCompatActivity() {
                     showSnackbar(state.msg)
                 }
 
-                mainSwipeLayout.isRefreshing = false
+                mainSwipeLayout.isEnabled = true
             }
         }
     }
@@ -116,11 +119,19 @@ class StoriesActivity : AppCompatActivity() {
 
         recyclerView.adapter = adapter
         recyclerView.layoutManager = layoutManager
+
+        recyclerView.addItemDecoration(
+            DividerItemDecoration(
+                recyclerView.context,
+                DividerItemDecoration.VERTICAL
+            )
+        )
     }
 
     private fun initListeners() {
         mainSwipeLayout.setOnRefreshListener {
             viewModel.refresh()
+            mainSwipeLayout.isEnabled = false
         }
     }
 
@@ -129,5 +140,8 @@ class StoriesActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        toolbar.setNavigationOnClickListener {
+            onBackPressed()
+        }
     }
 }
