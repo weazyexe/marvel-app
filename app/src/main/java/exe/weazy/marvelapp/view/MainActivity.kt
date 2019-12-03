@@ -2,50 +2,90 @@ package exe.weazy.marvelapp.view
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import exe.weazy.marvelapp.R
 import exe.weazy.marvelapp.databinding.ActivityMainBinding
-import kotlinx.android.synthetic.main.activity_main.*
+import exe.weazy.marvelapp.model.MenuItem
+import exe.weazy.marvelapp.recycler.adapter.MenuAdapter
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityMainBinding
 
+    private lateinit var menuItems : List<MenuItem>
+
+    private lateinit var adapter : MenuAdapter
+    private lateinit var layoutManager: LinearLayoutManager
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-    }
 
-    override fun onStart() {
-        super.onStart()
+        initMenuItems()
         initListeners()
     }
 
+    private fun initMenuItems() {
+        menuItems = mutableListOf(
+            MenuItem(
+                getString(R.string.characters),
+                getString(R.string.characters_desc),
+                ContextCompat.getDrawable(this, R.drawable.characters)!!,
+                Intent(this, CharactersActivity::class.java)),
+
+            MenuItem(
+                getString(R.string.comics),
+                getString(R.string.comics_desc),
+                ContextCompat.getDrawable(this, R.drawable.comics)!!,
+                Intent(this, ComicsActivity::class.java)),
+
+            MenuItem(
+                getString(R.string.creators),
+                getString(R.string.creators_desc),
+                ContextCompat.getDrawable(this, R.drawable.creators)!!,
+                Intent(this, CreatorsActivity::class.java)),
+
+            MenuItem(
+                getString(R.string.events),
+                getString(R.string.events_desc),
+                ContextCompat.getDrawable(this, R.drawable.events)!!,
+                Intent(this, EventsActivity::class.java)),
+
+            MenuItem(
+                getString(R.string.series),
+                getString(R.string.series_desc),
+                ContextCompat.getDrawable(this, R.drawable.series)!!,
+                Intent(this, SeriesActivity::class.java)),
+
+            MenuItem(
+                getString(R.string.stories),
+                getString(R.string.stories_desc),
+                ContextCompat.getDrawable(this, R.drawable.stories)!!,
+                Intent(this, StoriesActivity::class.java))
+        )
+    }
+
     private fun initListeners() {
-        charactersCardView.setOnClickListener {
-            openActivity(Intent(this, CharactersActivity::class.java))
+        val recyclerView = findViewById<RecyclerView>(R.id.menuItemsRecyclerView)
+
+        val onClickListener = View.OnClickListener {
+            val position = recyclerView.getChildAdapterPosition(it as View)
+            val menuItem = menuItems[position]
+
+            openActivity(menuItem.intent)
         }
 
-        comicsCardView.setOnClickListener {
-            openActivity(Intent(this, ComicsActivity::class.java))
-        }
+        adapter = MenuAdapter(menuItems, onClickListener)
+        layoutManager = LinearLayoutManager(this)
 
-        creatorsCardView.setOnClickListener {
-            openActivity(Intent(this, CreatorsActivity::class.java))
-        }
-
-        eventsCardView.setOnClickListener {
-            openActivity(Intent(this, EventsActivity::class.java))
-        }
-
-        seriesCardView.setOnClickListener {
-            openActivity(Intent(this, SeriesActivity::class.java))
-        }
-
-        storiesCardView.setOnClickListener {
-            openActivity(Intent(this, StoriesActivity::class.java))
-        }
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = layoutManager
     }
 
     private fun openActivity(intent: Intent) {

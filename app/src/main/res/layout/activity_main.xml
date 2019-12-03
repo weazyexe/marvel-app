@@ -1,68 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".view.MainActivity">
 
-    <ScrollView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/menuItemsRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <include
-                android:id="@+id/charactersCardView"
-                layout="@layout/card_menu_item"
-                app:title="@{@string/characters}"
-                app:description="@{@string/characters_desc}"
-                app:image="@{@drawable/characters}"
-                app:transitionName="@{@string/characters}"/>
-
-            <include
-                android:id="@+id/comicsCardView"
-                layout="@layout/card_menu_item"
-                app:title="@{@string/comics}"
-                app:description="@{@string/comics_desc}"
-                app:image="@{@drawable/comics}"
-                app:transitionName="@{@string/comics}"/>
-
-            <include
-                android:id="@+id/creatorsCardView"
-                layout="@layout/card_menu_item"
-                app:title="@{@string/creators}"
-                app:description="@{@string/creators_desc}"
-                app:image="@{@drawable/creators}"
-                app:transitionName="@{@string/creators}"/>
-
-            <include
-                android:id="@+id/eventsCardView"
-                layout="@layout/card_menu_item"
-                app:title="@{@string/events}"
-                app:description="@{@string/events_desc}"
-                app:image="@{@drawable/events}"
-                app:transitionName="@{@string/events}"/>
-
-            <include
-                android:id="@+id/seriesCardView"
-                layout="@layout/card_menu_item"
-                app:title="@{@string/series}"
-                app:description="@{@string/series_desc}"
-                app:image="@{@drawable/series}"
-                app:transitionName="@{@string/series}"/>
-
-            <include
-                android:id="@+id/storiesCardView"
-                layout="@layout/card_menu_item"
-                app:title="@{@string/stories}"
-                app:description="@{@string/stories_desc}"
-                app:image="@{@drawable/stories}"
-                app:transitionName="@{@string/stories}"/>
-
-        </LinearLayout>
-
-    </ScrollView>
+        android:layout_height="wrap_content"/>
 
 </layout>
