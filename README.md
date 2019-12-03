@@ -9,5 +9,4 @@ My first MVVM implementation xd
 - Room
 - Paging Library
 - Glide
-- CircleImageView
-- AndroidX libs
+- AndroidX && Google Open Source libs
