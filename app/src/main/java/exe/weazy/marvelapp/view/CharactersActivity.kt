@@ -34,23 +34,14 @@ class CharactersActivity : AppCompatActivity() {
         initAdapter()
         initViewModel()
         initListeners()
-    }
 
-    override fun onStart() {
-        super.onStart()
-
-        val list = viewModel.characters.value
-        if (list.isNullOrEmpty()) {
-            viewModel.state.postValue(State.Loading())
-        } else {
-            viewModel.state.postValue(State.Loaded())
-        }
+        viewModel.state.postValue(State.Loading())
     }
 
     private fun setState(state : State) {
         when (state) {
             is State.Loaded -> {
-                heroesRecyclerView.visibility = View.VISIBLE
+                charactersRecyclerView.visibility = View.VISIBLE
                 loadingLayout.visibility = View.GONE
                 errorLayout.visibility = View.GONE
 
@@ -62,7 +53,7 @@ class CharactersActivity : AppCompatActivity() {
             }
 
             is State.Loading -> {
-                heroesRecyclerView.visibility = View.GONE
+                charactersRecyclerView.visibility = View.GONE
                 loadingLayout.visibility = View.VISIBLE
                 errorLayout.visibility = View.GONE
 
@@ -70,7 +61,7 @@ class CharactersActivity : AppCompatActivity() {
             }
 
             is State.Error -> {
-                heroesRecyclerView.visibility = View.GONE
+                charactersRecyclerView.visibility = View.GONE
                 loadingLayout.visibility = View.GONE
                 errorLayout.visibility = View.VISIBLE
 
@@ -115,14 +106,12 @@ class CharactersActivity : AppCompatActivity() {
             CharactersAdapter(CharactersDiffUtilItemCallback())
         layoutManager = LinearLayoutManager(this)
 
-        val recyclerView = findViewById<RecyclerView>(R.id.heroesRecyclerView)
+        charactersRecyclerView.adapter = adapter
+        charactersRecyclerView.layoutManager = layoutManager
 
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager = layoutManager
-
-        recyclerView.addItemDecoration(
+        charactersRecyclerView.addItemDecoration(
             DividerItemDecoration(
-                recyclerView.context,
+                charactersRecyclerView.context,
                 DividerItemDecoration.VERTICAL
             )
         )

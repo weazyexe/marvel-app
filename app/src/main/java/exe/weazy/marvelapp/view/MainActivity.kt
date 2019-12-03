@@ -7,11 +7,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import exe.weazy.marvelapp.R
 import exe.weazy.marvelapp.databinding.ActivityMainBinding
 import exe.weazy.marvelapp.model.MenuItem
 import exe.weazy.marvelapp.recycler.adapter.MenuAdapter
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -72,10 +72,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initListeners() {
-        val recyclerView = findViewById<RecyclerView>(R.id.menuItemsRecyclerView)
-
         val onClickListener = View.OnClickListener {
-            val position = recyclerView.getChildAdapterPosition(it as View)
+            val position = menuItemsRecyclerView.getChildAdapterPosition(it as View)
             val menuItem = menuItems[position]
 
             openActivity(menuItem.intent)
@@ -84,8 +82,8 @@ class MainActivity : AppCompatActivity() {
         adapter = MenuAdapter(menuItems, onClickListener)
         layoutManager = LinearLayoutManager(this)
 
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager = layoutManager
+        menuItemsRecyclerView.adapter = adapter
+        menuItemsRecyclerView.layoutManager = layoutManager
     }
 
     private fun openActivity(intent: Intent) {

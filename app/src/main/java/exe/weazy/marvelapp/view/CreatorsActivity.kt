@@ -8,7 +8,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import exe.weazy.marvelapp.R
 import exe.weazy.marvelapp.recycler.adapter.CreatorsAdapter
@@ -34,17 +33,8 @@ class CreatorsActivity : AppCompatActivity() {
         initAdapter()
         initViewModel()
         initListeners()
-    }
 
-    override fun onStart() {
-        super.onStart()
-
-        val list = viewModel.creators.value
-        if (list.isNullOrEmpty()) {
-            viewModel.state.postValue(State.Loading())
-        } else {
-            viewModel.state.postValue(State.Loaded())
-        }
+        viewModel.state.postValue(State.Loading())
     }
 
     private fun setState(state : State) {
@@ -115,14 +105,12 @@ class CreatorsActivity : AppCompatActivity() {
             CreatorsAdapter(CreatorsDiffUtilIemCallback())
         layoutManager = LinearLayoutManager(this)
 
-        val recyclerView = findViewById<RecyclerView>(R.id.creatorsRecyclerView)
+        creatorsRecyclerView.adapter = adapter
+        creatorsRecyclerView.layoutManager = layoutManager
 
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager = layoutManager
-
-        recyclerView.addItemDecoration(
+        creatorsRecyclerView.addItemDecoration(
             DividerItemDecoration(
-                recyclerView.context,
+                creatorsRecyclerView.context,
                 DividerItemDecoration.VERTICAL
             )
         )

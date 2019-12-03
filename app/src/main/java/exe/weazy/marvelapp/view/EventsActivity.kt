@@ -1,14 +1,13 @@
 package exe.weazy.marvelapp.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import exe.weazy.marvelapp.R
 import exe.weazy.marvelapp.recycler.adapter.EventsAdapter
@@ -34,17 +33,8 @@ class EventsActivity : AppCompatActivity() {
         initAdapter()
         initViewModel()
         initListeners()
-    }
 
-    override fun onStart() {
-        super.onStart()
-
-        val list = viewModel.events.value
-        if (list.isNullOrEmpty()) {
-            viewModel.state.postValue(State.Loading())
-        } else {
-            viewModel.state.postValue(State.Loaded())
-        }
+        viewModel.state.postValue(State.Loading())
     }
 
     private fun setState(state : State) {
@@ -116,14 +106,12 @@ class EventsActivity : AppCompatActivity() {
             EventsAdapter(EventsDiffUtilItemCallback())
         layoutManager = LinearLayoutManager(this)
 
-        val recyclerView = findViewById<RecyclerView>(R.id.eventsRecyclerView)
+        eventsRecyclerView.adapter = adapter
+        eventsRecyclerView.layoutManager = layoutManager
 
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager = layoutManager
-
-        recyclerView.addItemDecoration(
+        eventsRecyclerView.addItemDecoration(
             DividerItemDecoration(
-                recyclerView.context,
+                eventsRecyclerView.context,
                 DividerItemDecoration.VERTICAL
             )
         )
